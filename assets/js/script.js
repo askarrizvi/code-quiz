@@ -9,20 +9,35 @@ var a3Button = document.getElementById('a3');
 var a4Button = document.getElementById('a4');
 var quizContainer = document.getElementById('quiz');
 var timerText = document.getElementById('timer');
+var startDisplay = document.getElementById('startdisplay');
+var answerDisp = document.getElementById('answer');
 
-startButton.addEventListener('click', nextQuestion);
+startButton.addEventListener('click', startQuiz);
 a1Button.addEventListener("click", () => { evaluateAnswer(1); });
 a2Button.addEventListener("click", () => { evaluateAnswer(2); });
 a3Button.addEventListener("click", () => { evaluateAnswer(3); });
 a4Button.addEventListener("click", () => { evaluateAnswer(4); });
 
+function initialize(){
+    a1Button.style.display = 'none';
+    a2Button.style.display = 'none';
+    a3Button.style.display = 'none';
+    a4Button.style.display = 'none';
+}
+
 function startQuiz() {
+    startDisplay.style.display = 'none';
+    a1Button.style.display = 'inline-block';
+    a2Button.style.display = 'inline-block';
+    a3Button.style.display = 'inline-block';
+    a4Button.style.display = 'inline-block';
+
     currentQuestion = questions[currQuesNum];
     console.log(currentQuestion.answers.length);
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansq = "#a" + (i + 1);
         console.log(ansq);
-        document.querySelector(ansq).innerHTML = currentQuestion.answers[i];
+        document.querySelector(ansq).innerHTML = (i+1) + ". " + currentQuestion.answers[i];
     }
 
     document.getElementById('quiz').innerHTML = currentQuestion.question;
@@ -40,17 +55,18 @@ function displayQuestion(num) {
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansq = "#a" + (i + 1);
         //console.log(ansq);
-        document.querySelector(ansq).innerHTML = currentQuestion.answers[i];
+        document.querySelector(ansq).innerHTML = (i+1) + ". " + currentQuestion.answers[i];
     }
     document.getElementById('quiz').innerHTML = currentQuestion.question;
 }
 
 function evaluateAnswer(num) {
     if (currentQuestion.correctAnswer === num) {
-        console.log("right answer");
+        answerDisp.innerHTML = "Right";
     }
     else {
         console.log("wrong answer");
+        answerDisp.innerHTML = "Wrong";
         timer = timer - 10;
     }
     currQuesNum++;
@@ -66,7 +82,7 @@ function evaluateAnswer(num) {
 function startTimer() {
     timer = 75;
     var interval = setInterval(function () {
-        timerText.innerHTML = timer;
+        timerText.innerHTML = "Time: " + timer;
         timer--;
         if (timer < 0) {
             console.log("You lost");
@@ -107,4 +123,4 @@ var questions = [
     }
 ];
 
-startQuiz();
+initialize();
