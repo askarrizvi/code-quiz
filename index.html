@@ -10,13 +10,15 @@
 </head>
 
 <body>
-    <header>
-        <a href="#what-we-do">View High Scores</a>
+    <!--Header with high scores link and timer-->
+    <header id="header">
+        <p id="hslink">View High Scores</p>
         <div>
             <p id="timer">Time: 0</p>
         </div>
     </header>
 
+    <!--What the user sees when the page loads-->
     <section class="startdisplay" id="startdisplay">
         <h1>Coding Quiz Challenge</h1>
         <p>Try to answer the following code-related question within the time limit.<br />
@@ -25,8 +27,9 @@
         <button id="start">Start Quiz</button>
     </section>
 
-    <section class="quiz-display">
-        <div class="quiz-container">
+    <!--Quiz question with 4 buttons-->
+    <section class="quiz-display" id="quiz-display">
+        <div class="quiz-container" id="quiz-container">
             <div id="quiz"></div>
             <div class="ansbtn">
                 <button id="a1"></button>
@@ -40,11 +43,33 @@
             <div class="ansbtn">
                 <button id="a4"></button>
             </div>
-            <div id="answer"></div>
         </div>
     </section>
-    <div id="results"></div>
 
+    <!--End of quiz with a text entry field to enter initials-->
+    <section class="result-container" id="result-container">
+        <div class="results" id="results">
+            <h1>All done!</h1>
+            <div id="final-score"></div>
+            <div id="initials">Enter Initials:
+                <textarea maxlength="2" rows="1" cols="10" id="initials-input"></textarea>
+                <button id="submit" type="submit">Submit</button>
+            </div>
+        </div>
+        <div id="answer"></div>
+    </section>
+
+    <!--Highscore with an ordered list-->
+    <section class="hs-container" id="hs-container">
+        <div class="highscores" id="highscores">
+            <h1>High scores</h1>
+            <ol id="hslist"></ol>
+            <div>
+                <button id="goback">Go back</button>
+                <button id="clear">Clear High Scores</button>
+            </div>
+        </div>
+    </section>
     <script src="./assets/js/script.js"></script>
 </body>
 

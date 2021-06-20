@@ -12,14 +12,16 @@ header {
     flex-wrap: wrap;
 }
 
-header a {
-    padding-top: 17px;
+/*Set the view high scores link colour*/
+#hslink {
+    color: rgb(118, 0, 197);
 }
 
+/*Styling for the start page*/
 .startdisplay {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -30,11 +32,12 @@ h1 {
     font-size: 30px;
 }
 
-.startdisplay p{
+.startdisplay p {
     padding: 20px;
     text-align: center;
 }
 
+/*Styling for the buttons*/
 button {
     font-size: 22px;
     background-color: rgb(59, 0, 99);
@@ -50,7 +53,8 @@ button:hover {
     background-color: rgb(118, 0, 197);
 }
 
-.quiz-display{
+/*Styling for the quiz question and answers*/
+.quiz-display {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -59,13 +63,13 @@ button:hover {
 .quiz-container {
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     justify-content: left;
     margin-top: 40px;
     width: 45%;
 }
 
-#quiz{
+#quiz {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
     margin: 0px;
@@ -74,12 +78,51 @@ button:hover {
     padding-bottom: 50px;
 }
 
-#answer{
+#answer {
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     justify-content: left;
     margin-top: 40px;
-    width: 100%;
+    width: 45%;
     border-top: 1px solid;
+}
+
+
+/*Styling for the results*/
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    margin-top: 40px;
+    width: 45%;
+}
+
+#initials {
+    padding-top: 15px;
+}
+
+/*Styling for the highscores*/
+.hs-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.highscores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    width: 45%;
 }
