@@ -4,6 +4,7 @@ var currQuesNum = 0;
 var score = 0;
 var highscores = [];
 var start = true;
+var finished = false;
 var currentQuestion;
 //Assign DOM elements
 var startButtonEl = document.getElementById('start');
@@ -94,6 +95,7 @@ function evaluateAnswer(num) {
     //Check to see if the end of the quiz was reached, if it was set the score as the timer and display the final score
     currQuesNum++;
     if ((currQuesNum + 1) > questions.length) {
+        finished = true;
         score = timer;
         quizConEl.style.display = 'none';
         finalScoreEl.innerHTML = "Your final score is " + score;
@@ -110,7 +112,7 @@ function startTimer() {
     var interval = setInterval(function () {
         timerTextEl.innerHTML = "Time: " + timer;
         timer--;
-//If the timer reaches 0, stop the timer, set the score ad 0 and display the final score
+        //If the timer reaches 0, stop the timer, set the score ad 0 and display the final score
         if (timer <= 0) {
             clearInterval(interval);
             score = timer;
@@ -118,6 +120,9 @@ function startTimer() {
             quizConEl.style.display = 'none';
             finalScoreEl.innerHTML = "Your final score is " + score;
             rresultsDispEl.style.display = 'flex';
+        }
+        else if (finished === true) {
+            clearInterval(interval);
         }
     }, 1000);
 }
@@ -132,17 +137,17 @@ function viewHighscore() {
     highscoreDispEl.style.display = 'inline-block'
 
     //Sort the highscores from highest to lowest
-    highscores = highscores.sort(function(a, b){
+    highscores = highscores.sort(function (a, b) {
         return (b.score - a.score);
     });
     //Create a list element for every highscore in the list, limited to 10 scores
-    for (i=0; i<highscores.length; i++){
+    for (i = 0; i < highscores.length; i++) {
         var listItemEl = document.createElement("li");
         listItemEl.className = "hs-item";
-        var listText = document.createTextNode(highscores[i].initials+" - "+highscores[i].score);
+        var listText = document.createTextNode(highscores[i].initials + " - " + highscores[i].score);
         listItemEl.appendChild(listText);
         highscoreListEl.appendChild(listItemEl);
-        if(i===9){
+        if (i === 9) {
             break;
         }
     }
@@ -166,14 +171,14 @@ function submitHighscore() {
 //Close the highscore elements
 function closeHighscore() {
     //If start variable is true, show the start screen, otherwise display the final score
-    if (start){
+    if (start) {
         startDisplayEl.style.display = 'flex';
     }
     else {
-    rresultsDispEl.style.display = 'flex';
-    document.getElementById("initials-input").style.display = 'none';
-    document.getElementById("initials").style.display = 'none';
-    submitButtonEl.style.display = 'none';
+        rresultsDispEl.style.display = 'flex';
+        document.getElementById("initials-input").style.display = 'none';
+        document.getElementById("initials").style.display = 'none';
+        submitButtonEl.style.display = 'none';
     }
     highscoreDispEl.style.display = 'none'
     document.getElementById("header").style.display = 'flex'
@@ -189,13 +194,13 @@ function clearHighscore() {
 }
 
 //Load the highscores
-function loadHs(){
+function loadHs() {
     //Get the highscores from localstorage and save them in a variable
     var savedHighscores = [];
     savedHighscores = JSON.parse(localStorage.getItem("highscores"));
 
     //If there are no save highscores, set highscores to empty, otherwise store the saved scores in highscores
-    if (!savedHighscores){
+    if (!savedHighscores) {
         highscores = [];
         return false;
     } else {
